@@ -1,0 +1,129 @@
+// Prisma Schema - Gestion de Mantenimiento Vehicular
+// Arquitectura preparada para Serverless en Vercel con PostgreSQL (Neon / Supabase)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum EstadoMantenimiento {
+  PENDIENTE
+  EN_PROCESO
+  COMPLETADO
+}
+
+enum RolUsuario {
+  ADMINISTRADOR
+  SUPERVISOR
+  MECANICO_OPERADOR
+  CLIENTE
+}
+
+enum NivelPermiso {
+  TOTAL
+  OPERACION
+  CONSULTA
+  NINGUNO
+}
+
+model Cliente {
+  id                 String     @id @default(uuid())
+  nombre             String
+  documentoIdentidad String?    @map("documento_identidad")
+  telefono           String?
+  correo             String?    @unique
+  vehiculos          Vehiculo[]
+  usuarios           Usuario[]
+  createdAt          DateTime   @default(now()) @map("created_at")
+  updatedAt          DateTime   @updatedAt @map("updated_at")
+
+  @@map("clientes")
+}
+
+model Vehiculo {
+  id             String          @id @default(uuid())
+  placa          String?
+  marca          String
+  modelo         String
+  anio           Int
+  tipo           String          @default("Carro")
+  clienteId      String          @map("cliente_id")
+  cliente        Cliente         @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+  mantenimientos Mantenimiento[]
+  createdAt      DateTime        @default(now()) @map("created_at")
+  updatedAt      DateTime        @updatedAt @map("updated_at")
+
+  @@index([clienteId])
+  @@map("vehiculos")
+}
+
+model Mantenimiento {
+  id                  String              @id @default(uuid())
+  fechaProgramada     DateTime            @map("fecha_programada")
+  descripcionServicio String              @map("descripcion_servicio") @db.Text
+  estado              EstadoMantenimiento @default(PENDIENTE)
+  kilometraje         Int?
+  horasHombre         Float?              @map("horas_hombre")
+  costoManoObra       Float?              @map("costo_mano_obra")
+  costoManoObraBs     Float?              @map("costo_mano_obra_bs")
+  tasaCambio          Float?              @map("tasa_cambio")
+  esGarantia          Boolean             @default(false) @map("es_garantia")
+  vehiculoId          String              @map("vehiculo_id")
+  vehiculo            Vehiculo            @relation(fields: [vehiculoId], references: [id], onDelete: Cascade)
+  createdAt           DateTime            @default(now()) @map("created_at")
+  updatedAt           DateTime            @updatedAt @map("updated_at")
+
+  @@index([vehiculoId])
+  @@index([estado])
+  @@map("mantenimientos")
+}
+
+model OpcionCatalogo {
+  id        String   @id @default(uuid())
+  categoria String   // "MARCA_VEHICULO", "TIPO_SERVICIO", etc.
+  valor     String
+  orden     Int      @default(0)
+  activo    Boolean  @default(true)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([categoria, valor])
+  @@index([categoria])
+  @@map("opciones_catalogo")
+}
+
+model Usuario {
+  id        String     @id @default(uuid())
+  nombre    String
+  usuario   String     @unique
+  password  String     @default("123456")
+  rol       RolUsuario @default(SUPERVISOR)
+  activo    Boolean    @default(true)
+  clienteId String?    @map("cliente_id")
+  cliente   Cliente?   @relation(fields: [clienteId], references: [id], onDelete: SetNull)
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
+
+  @@index([rol])
+  @@index([clienteId])
+  @@map("usuarios")
+}
+
+model PermisoRol {
+  id        String       @id @default(uuid())
+  rol       RolUsuario
+  modulo    String
+  nivel     NivelPermiso @default(CONSULTA)
+  createdAt DateTime     @default(now()) @map("created_at")
+  updatedAt DateTime     @updatedAt @map("updated_at")
+
+  @@unique([rol, modulo])
+  @@index([rol])
+  @@map("permisos_rol")
+}
+

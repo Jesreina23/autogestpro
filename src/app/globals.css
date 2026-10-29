@@ -1,0 +1,331 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+}
+
+body {
+  color: var(--foreground);
+  background-color: var(--background);
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+/* Scrollbar corporativo discreto */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* =========================================================================
+   ESTRUCTURA BASE DE LA BARRA DE NAVEGACION (DESKTOP & MOVIL)
+   ========================================================================= */
+
+.sidebar-surface {
+  background-color: #0b0f19 !important;
+}
+
+.sidebar-brand-badge {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #94a3b8;
+}
+
+.sidebar-brand-subtitle {
+  color: #64748b;
+}
+
+.sidebar-section-title {
+  color: #64748b;
+}
+
+.sidebar-nav-active {
+  background-color: rgba(56, 189, 248, 0.12) !important;
+  border-left: 3px solid #38bdf8 !important;
+  color: #ffffff !important;
+}
+
+.sidebar-nav-active .sidebar-nav-icon {
+  color: #38bdf8 !important;
+}
+
+.sidebar-status-dot {
+  background-color: #10b981;
+}
+
+/* =========================================================================
+   PALETAS DE COLORES CORPORATIVAS E INGENIERILES (ESTILO PREMIUM REFINADO)
+   ========================================================================= */
+
+/* 1. SLATE (Azul Acero Naval - Base Oficial) */
+[data-palette="slate"] .sidebar-surface {
+  background-color: #0b0f19 !important;
+}
+[data-palette="slate"] .sidebar-nav-active {
+  background-color: rgba(56, 189, 248, 0.14) !important;
+  border-left: 3px solid #38bdf8 !important;
+  color: #ffffff !important;
+}
+[data-palette="slate"] .sidebar-nav-active .sidebar-nav-icon {
+  color: #38bdf8 !important;
+}
+[data-palette="slate"] .sidebar-brand-badge {
+  background-color: rgba(56, 189, 248, 0.12) !important;
+  border-color: rgba(56, 189, 248, 0.35) !important;
+  color: #38bdf8 !important;
+}
+[data-palette="slate"] .sidebar-section-title {
+  color: #64748b !important;
+}
+[data-palette="slate"] button.bg-slate-900,
+[data-palette="slate"] a.bg-slate-900 {
+  background-color: #0f172a !important;
+}
+[data-palette="slate"] button.bg-slate-900:hover,
+[data-palette="slate"] a.bg-slate-900:hover {
+  background-color: #1e293b !important;
+}
+
+/* 2. ZINC (Gris Titanio Industrial) */
+[data-palette="zinc"] .sidebar-surface {
+  background-color: #09090b !important;
+}
+[data-palette="zinc"] .sidebar-nav-active {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-left: 3px solid #e4e4e7 !important;
+  color: #ffffff !important;
+}
+[data-palette="zinc"] .sidebar-nav-active .sidebar-nav-icon {
+  color: #ffffff !important;
+}
+[data-palette="zinc"] .sidebar-brand-badge {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  color: #ffffff !important;
+}
+[data-palette="zinc"] .sidebar-section-title {
+  color: #71717a !important;
+}
+[data-palette="zinc"] button.bg-slate-900,
+[data-palette="zinc"] a.bg-slate-900 {
+  background-color: #27272a !important;
+}
+[data-palette="zinc"] button.bg-slate-900:hover,
+[data-palette="zinc"] a.bg-slate-900:hover {
+  background-color: #3f3f46 !important;
+}
+
+/* 3. EMERALD (Verde Esmeralda Técnico) */
+[data-palette="emerald"] .sidebar-surface {
+  background-color: #04120e !important;
+}
+[data-palette="emerald"] .sidebar-nav-active {
+  background-color: rgba(16, 185, 129, 0.16) !important;
+  border-left: 3px solid #10b981 !important;
+  color: #ecfdf5 !important;
+}
+[data-palette="emerald"] .sidebar-nav-active .sidebar-nav-icon {
+  color: #34d399 !important;
+}
+[data-palette="emerald"] .sidebar-brand-badge {
+  background-color: rgba(16, 185, 129, 0.15) !important;
+  border-color: rgba(16, 185, 129, 0.35) !important;
+  color: #34d399 !important;
+}
+[data-palette="emerald"] .sidebar-section-title {
+  color: #059669 !important;
+}
+[data-palette="emerald"] button.bg-slate-900,
+[data-palette="emerald"] a.bg-slate-900 {
+  background-color: #047857 !important;
+}
+[data-palette="emerald"] button.bg-slate-900:hover,
+[data-palette="emerald"] a.bg-slate-900:hover {
+  background-color: #065f46 !important;
+}
+
+/* 4. AMBER (Ámbar Pit-Stop Mecánico) */
+[data-palette="amber"] .sidebar-surface {
+  background-color: #120e0a !important;
+}
+[data-palette="amber"] .sidebar-nav-active {
+  background-color: rgba(245, 158, 11, 0.16) !important;
+  border-left: 3px solid #f59e0b !important;
+  color: #fffbeb !important;
+}
+[data-palette="amber"] .sidebar-nav-active .sidebar-nav-icon {
+  color: #fbbf24 !important;
+}
+[data-palette="amber"] .sidebar-brand-badge {
+  background-color: rgba(245, 158, 11, 0.15) !important;
+  border-color: rgba(245, 158, 11, 0.35) !important;
+  color: #fbbf24 !important;
+}
+[data-palette="amber"] .sidebar-section-title {
+  color: #d97706 !important;
+}
+[data-palette="amber"] button.bg-slate-900,
+[data-palette="amber"] a.bg-slate-900 {
+  background-color: #d97706 !important;
+}
+[data-palette="amber"] button.bg-slate-900:hover,
+[data-palette="amber"] a.bg-slate-900:hover {
+  background-color: #b45309 !important;
+}
+
+/* 5. INDIGO (Cobalto de Precisión) */
+[data-palette="indigo"] .sidebar-surface {
+  background-color: #0a0c1a !important;
+}
+[data-palette="indigo"] .sidebar-nav-active {
+  background-color: rgba(99, 102, 241, 0.18) !important;
+  border-left: 3px solid #6366f1 !important;
+  color: #e0e7ff !important;
+}
+[data-palette="indigo"] .sidebar-nav-active .sidebar-nav-icon {
+  color: #818cf8 !important;
+}
+[data-palette="indigo"] .sidebar-brand-badge {
+  background-color: rgba(99, 102, 241, 0.18) !important;
+  border-color: rgba(99, 102, 241, 0.35) !important;
+  color: #818cf8 !important;
+}
+[data-palette="indigo"] .sidebar-section-title {
+  color: #6366f1 !important;
+}
+[data-palette="indigo"] button.bg-slate-900,
+[data-palette="indigo"] a.bg-slate-900 {
+  background-color: #4f46e5 !important;
+}
+[data-palette="indigo"] button.bg-slate-900:hover,
+[data-palette="indigo"] a.bg-slate-900:hover {
+  background-color: #4338ca !important;
+}
+
+/* =========================================================================
+   MODO OSCURO INTEGRAL (DARK MODE)
+   ========================================================================= */
+
+html.dark body,
+html[data-theme="dark"] body {
+  background-color: #080d16 !important;
+  color: #f1f5f9 !important;
+}
+
+/* Areas de trabajo */
+html.dark .bg-slate-50,
+html[data-theme="dark"] .bg-slate-50 {
+  background-color: #080d16 !important;
+}
+
+/* Tarjetas, modales y tablas */
+html.dark .bg-white,
+html[data-theme="dark"] .bg-white {
+  background-color: #0f172a !important;
+  color: #f1f5f9 !important;
+}
+
+/* Fondos secundarios o tenues */
+html.dark .bg-slate-50\/60,
+html.dark .bg-slate-50\/80,
+html.dark .bg-slate-50\/70,
+html[data-theme="dark"] .bg-slate-50\/60,
+html[data-theme="dark"] .bg-slate-50\/80,
+html[data-theme="dark"] .bg-slate-50\/70 {
+  background-color: #162032 !important;
+}
+
+html.dark .hover\:bg-slate-50:hover,
+html.dark .hover\:bg-slate-50\/70:hover,
+html.dark .hover\:bg-slate-100:hover,
+html[data-theme="dark"] .hover\:bg-slate-50:hover,
+html[data-theme="dark"] .hover\:bg-slate-50\/70:hover,
+html[data-theme="dark"] .hover\:bg-slate-100:hover {
+  background-color: #1b273d !important;
+}
+
+/* Cabecera / Header */
+html.dark header,
+html[data-theme="dark"] header {
+  background-color: rgba(15, 23, 42, 0.94) !important;
+  backdrop-filter: blur(12px) !important;
+  border-color: #1e293b !important;
+}
+
+/* Bordes en modo oscuro */
+html.dark .border-slate-200,
+html.dark .border-slate-300,
+html.dark .border-slate-100,
+html[data-theme="dark"] .border-slate-200,
+html[data-theme="dark"] .border-slate-300,
+html[data-theme="dark"] .border-slate-100 {
+  border-color: #1e293b !important;
+}
+
+html.dark .divide-slate-100 > :not([hidden]) ~ :not([hidden]),
+html.dark .divide-slate-200 > :not([hidden]) ~ :not([hidden]),
+html[data-theme="dark"] .divide-slate-100 > :not([hidden]) ~ :not([hidden]),
+html[data-theme="dark"] .divide-slate-200 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #1e293b !important;
+}
+
+/* Textos principales */
+html.dark .text-slate-900,
+html.dark .text-slate-800,
+html.dark .text-slate-700,
+html[data-theme="dark"] .text-slate-900,
+html[data-theme="dark"] .text-slate-800,
+html[data-theme="dark"] .text-slate-700 {
+  color: #f8fafc !important;
+}
+
+/* Textos secundarios */
+html.dark .text-slate-600,
+html.dark .text-slate-500,
+html[data-theme="dark"] .text-slate-600,
+html[data-theme="dark"] .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+/* Inputs, selects y textareas */
+html.dark input:not([type="checkbox"]),
+html.dark select,
+html.dark textarea,
+html[data-theme="dark"] input:not([type="checkbox"]),
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea {
+  background-color: #162032 !important;
+  color: #f8fafc !important;
+  border-color: #27364f !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder,
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* Badges neutros en modo oscuro */
+html.dark .bg-slate-100,
+html[data-theme="dark"] .bg-slate-100 {
+  background-color: #1e293b !important;
+  color: #cbd5e1 !important;
+}
+
+
