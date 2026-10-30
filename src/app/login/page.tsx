@@ -13,40 +13,9 @@ import {
   Wrench,
   Sun,
   Moon,
-  Sparkles,
 } from "lucide-react";
 import { useUser } from "@/context/UserContext";
 import { useTheme } from "@/context/ThemeContext";
-
-const CUENTAS_DEMO = [
-  {
-    perfil: "Supervisor / Taller",
-    nombre: "Ing. Supervisor Principal",
-    usuario: "supervisor",
-    clave: "SuperClave2026!",
-    rol: "ADMINISTRADOR",
-    descripcion: "Control total, clientes, órdenes, costos y configuración",
-    badgeClass: "bg-sky-500/20 text-sky-300 border-sky-500/30",
-  },
-  {
-    perfil: "Portal de Cliente",
-    nombre: "Juan Carlos Rodríguez",
-    usuario: "jrodriguez",
-    clave: "cli7890",
-    rol: "CLIENTE",
-    descripcion: "Vista de cliente titular, sus vehículos y estado de servicio",
-    badgeClass: "bg-purple-500/20 text-purple-300 border-purple-500/30",
-  },
-  {
-    perfil: "Mecánico Operador",
-    nombre: "Carlos Méndez",
-    usuario: "carlos.mendez",
-    clave: "mecanico2026",
-    rol: "MECANICO_OPERADOR",
-    descripcion: "Operaciones en bahía de trabajo y órdenes de mantenimiento",
-    badgeClass: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
-  },
-];
 
 export default function LoginPage() {
   const router = useRouter();
@@ -83,12 +52,6 @@ export default function LoginPage() {
     } else {
       router.replace("/");
     }
-  };
-
-  const handleQuickFill = (user: string, pass: string) => {
-    setUsuario(user);
-    setPassword(pass);
-    setErrorMessage(null);
   };
 
   return (
@@ -163,12 +126,12 @@ export default function LoginPage() {
                   autoCorrect="off"
                   value={usuario}
                   onChange={(e) => setUsuario(e.target.value)}
-                  placeholder="Ej. supervisor o jrodriguez"
+                  placeholder="Ej. jesreina"
                   className="w-full pl-8 pr-3.5 py-2.5 text-xs bg-slate-950/70 border border-slate-800 rounded-lg text-white placeholder-slate-500 font-mono focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500 transition-colors"
                 />
               </div>
               <p className="text-[10px] text-slate-400">
-                Puede escribir con o sin @ (ej. @supervisor o @jrodriguez)
+                Puede escribir con o sin @ (ej. @jesreina)
               </p>
             </div>
 
@@ -218,49 +181,6 @@ export default function LoginPage() {
               )}
             </button>
           </form>
-
-          {/* Cuentas de demostracion solo visibles en entorno de desarrollo local */}
-          {process.env.NODE_ENV === "development" && (
-            <div className="pt-4 border-t border-slate-800/80 space-y-2.5">
-              <div className="flex items-center justify-between text-[11px] text-slate-400">
-                <span className="flex items-center gap-1.5 font-mono text-slate-300 font-semibold">
-                  <Sparkles className="w-3.5 h-3.5 text-sky-400" />
-                  Ejemplos de acceso rápido por perfil (Solo Desarrollo):
-                </span>
-                <span className="text-[10px] text-slate-500 font-mono">1 clic para probar</span>
-              </div>
-
-              <div className="space-y-1.5">
-                {CUENTAS_DEMO.map((cuenta) => (
-                  <button
-                    key={cuenta.usuario}
-                    type="button"
-                    onClick={() => handleQuickFill(cuenta.usuario, cuenta.clave)}
-                    className="w-full p-2.5 rounded-lg border border-slate-800/80 bg-slate-950/60 hover:bg-slate-800 hover:border-slate-700 text-left transition-all group flex items-center justify-between gap-2"
-                  >
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-2">
-                        <span className="font-mono text-xs font-bold text-white group-hover:text-sky-300 transition-colors">
-                          @{cuenta.usuario}
-                        </span>
-                        <span
-                          className={`text-[9px] px-1.5 py-0.5 rounded border font-mono font-medium ${cuenta.badgeClass}`}
-                        >
-                          {cuenta.perfil}
-                        </span>
-                      </div>
-                      <p className="text-[10px] text-slate-400 truncate mt-0.5">
-                        {cuenta.nombre} &bull; <span className="font-mono text-slate-500">Clave: {cuenta.clave}</span>
-                      </p>
-                    </div>
-                    <span className="text-[10px] font-mono font-semibold px-2 py-1 rounded bg-slate-900 border border-slate-700/80 text-sky-400 group-hover:bg-sky-500 group-hover:text-white group-hover:border-sky-400 transition-all shrink-0">
-                      Probar
-                    </span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       </main>
 
