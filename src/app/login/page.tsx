@@ -126,12 +126,12 @@ export default function LoginPage() {
                   autoCorrect="off"
                   value={usuario}
                   onChange={(e) => setUsuario(e.target.value)}
-                  placeholder="Ej. jesreina"
+                  placeholder="Ingrese su usuario (ej. @usuario)"
                   className="w-full pl-8 pr-3.5 py-2.5 text-xs bg-slate-950/70 border border-slate-800 rounded-lg text-white placeholder-slate-500 font-mono focus:outline-none focus:ring-1 focus:ring-sky-500 focus:border-sky-500 transition-colors"
                 />
               </div>
               <p className="text-[10px] text-slate-400">
-                Puede escribir con o sin @ (ej. @jesreina)
+                Puede ingresar su usuario con o sin @ (ej. usuario o @usuario)
               </p>
             </div>
 
